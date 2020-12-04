@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:hacker_news/models/story_model.dart';
-
 import 'package:hacker_news/webServices/url_service.dart';
 import 'package:hacker_news/webServices/webservice.dart';
 import 'package:hacker_news/widgets/loading_widget.dart';
@@ -37,8 +36,6 @@ class _BestPageState extends State<BestPage> {
       });
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     if (completed)
@@ -46,30 +43,45 @@ class _BestPageState extends State<BestPage> {
         itemCount: _stories.length,
         itemBuilder: (_, index) {
           return ListTile(
-            
             title: Container(
-              margin: const EdgeInsets.all(15.0),
+              margin: const EdgeInsets.all(10.0),
               padding: const EdgeInsets.all(25.0),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.indigo,
+                  color: Colors.black,
                   width: 2,
                 ),
               ),
-              child: Column(
+              child: 
+              
+              
+              Column(
                 children: [
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       _stories[index].title,
-                      style: TextStyle(fontSize: 18),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  Align(
-                    alignment: Alignment.topLeft,
+                 
+                  
+Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "  Score",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+ Align(
+                    alignment: Alignment.topRight,
                     child: Text(
                       "Posted By",
                       style: TextStyle(
@@ -78,22 +90,38 @@ class _BestPageState extends State<BestPage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
+
                   Row(
                     children: <Widget>[
+                      
                       Expanded(
+                          child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: CircularPercentIndicator(
+                          radius: 70.0,
+                animation: true,
+                animationDuration: 1200,
+                lineWidth: 4.0,
+                percent: 0.8,
+                          center: new Text(
+                            "${_stories[index].score}",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          progressColor: Colors.green,
+                        ),
+                      )),
+                      Align(
+                        alignment: Alignment.topRight,
                         child: Text(
-                          _stories[index].by,
+                          "${_stories[index].by}",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
-                      
-                      
                     ],
                   )
+                  
                 ],
+                
               ),
             ),
           );
