@@ -37,7 +37,7 @@ class _BestPageState extends State<BestPage> {
       });
   }
 
-  void _navigateToShowCommentsPage(BuildContext context, int index) async {}
+  
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +46,7 @@ class _BestPageState extends State<BestPage> {
         itemCount: _stories.length,
         itemBuilder: (_, index) {
           return ListTile(
-            onTap: () {
-              _navigateToShowCommentsPage(context, index);
-            },
+            
             title: Container(
               margin: const EdgeInsets.all(15.0),
               padding: const EdgeInsets.all(25.0),
